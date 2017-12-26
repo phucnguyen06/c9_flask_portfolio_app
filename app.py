@@ -19,31 +19,21 @@ def profile(name):
 
 
 @app.route('/add_numbers', methods=['GET','POST'])
-import random
-def guessing_game():
-    selected_number = random.randint(1,5)
-    bad_guess = []
-    while len(bad_guess) < 3:
-        try:
-            my_guess = int(input("Please pick any number from 1 to 5: "))
-        except ValueError:
-            print("The {} you pick is not a number".format(my_guess))
-        else:
-            if my_guess > selected_number:
-                print("your {} is higher than selected number".format(my_guess))
-            elif my_guess < selected_number:
-                print("your {} is lower than selected number".format(my_guess))
-            else:
-                print("you got it!! The selected number is {} ".format(selected_number))
-                break
-            bad_guess.append(my_guess)
-    else:
-        print("you ran out of strikes. The selected number is {}".format(selected_number))
-    play_again = input("Do you want to play again? ")
-    if play_again == 'yes':
-        guessing_game(strikes)
-    else:
-        print("bye!!!")
+def add_numbers_post():
+	  # --> ['5', '6', '8']
+	  # print(type(request.form['text']))
+	  if request.method == 'GET':
+	  	return render_template('add_numbers.html')
+	  elif request.method == 'POST':
+  	      print(request.form['text'].split())
+  	      total = 0
+  	      try:
+  	      	for str_num in request.form['text'].split():
+  	      		total += int(str_num)
+  	      	return render_template('add_numbers.html', result=str(total))
+  	      except ValueError:
+  	      	return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
+
 
 @app.route('/shopping_list', methods=['GET','POST'])
 def shopping_list_post():
