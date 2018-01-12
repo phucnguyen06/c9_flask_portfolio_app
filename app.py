@@ -32,10 +32,10 @@ def add_numbers_post():
 	except ValueError:
 		return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
-@app.route('/conversion',method=['GET','POST'])
-def conversion_post():
+@app.route('/convert_numbers',method=['GET','POST'])
+def convert_numbers_post():
 	if request.method == 'GET':
-		return render_template('conversion.html')
+		return render_template('convert_numbers.html')
 	elif request.method == 'POST':
 		print(request.form['text'].split())
 	total = 0
