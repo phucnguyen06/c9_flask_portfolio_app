@@ -38,10 +38,10 @@ def conversion_post():
 		return render_template('conversion.html')
 	elif request.method == 'POST':
 		print(request.form['text'].split())
-	total = 1
+	total = 0
 	try:
-		for num in request.form['text'].split():
-			total = total + (int(num) * 1.8 + 32)
+		for str_num in request.form['text'].split():
+			total = total + (int(str_num) * 1.8 + 32)
 		return template('conversion.html',result=str(total))
 	except ValueError:
 		return 'Easy now! Let\'s keep it simple! 2 numbers with a space between them please'
