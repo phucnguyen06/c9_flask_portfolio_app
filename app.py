@@ -41,7 +41,7 @@ def convert_numbers_post():
 	try:
 		for str_num in request.form['text'].split():
 			total = total + (int(str_num) * 1.8 + 32)
-		return template('conversion.html',result=str(total))
+		return template('convert_numbers.html',result=str(total))
 	except ValueError:
 		return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
