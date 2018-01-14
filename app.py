@@ -17,17 +17,17 @@ def home_page():
 def profile(name):
 	return render_template('index.html', name=name)
 
-@app.route('/add_numbers', methods=['GET','POST'])
-def add_numbers_post():
+@app.route('/convert',method=['GET','POST'])
+def convert_numbers_post():
 	if request.method == 'GET':
-		return render_template('add_numbers.html')
+		return render_template('convert.html')
 	elif request.method == 'POST':
 		print(request.form['text'].split())
-	total = 1
+	total = 0
 	try:
 		for str_num in request.form['text'].split():
-			total = total + (int(str_num)**2)
-		return render_template('add_numbers.html', result=str(total))
+			total = total + (int(str_num) * 1.8 + 32)
+		return template('convert.html',result=str(total))
 	except ValueError:
 		return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
