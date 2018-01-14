@@ -31,27 +31,19 @@ def add_numbers_post():
 	except ValueError:
 		return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
-@app.route('/shopping_list', methods=['GET','POST'])
-def shopping_list_post():
-	  # --> ['5', '6', '8']
-	  # print(type(request.form['text']))
-
-    if request.method == 'GET':
-      return render_template('shopping_list.html')
-    elif request.method == 'POST':
-          print(request.form['text'].split())
-          
-          shop_list = []
-          try:
-            for item in request.form['text'].split():
-              
-              shop_list.append(item)
-
-              
-              
-            return render_template('shopping_list.html', result="\n".join([str(item) for item in shop_list]))
-          except ValueError:
-            return "Easy now! Let's keep it simple! Just words with a space between them"
+@app.route('/convert',method=['GET','POST'])
+def convert_numbers_post():
+	if request.method == 'GET':
+		return render_template('convert.html')
+	elif request.method == 'POST':
+		print(request.form['text'].split())
+	total = 0
+	try:
+		for str_num in request.form['text'].split():
+			total = total + (int(str_num) * 1.8 + 32)
+		return template('convert.html',result=str(total))
+	except ValueError:
+		return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
   	      
 @app.route('/time', methods=['GET','POST'])
